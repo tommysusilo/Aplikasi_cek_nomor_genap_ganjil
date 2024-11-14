@@ -66,17 +66,16 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
                         .addComponent(btnCek)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 147, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelnomor, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomor)))
+                        .addComponent(txtNomor))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblHasil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(lblHasil, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +88,7 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
                 .addComponent(btnCek)
                 .addGap(18, 18, 18)
                 .addComponent(lblHasil, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         titel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -116,7 +115,7 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
                 .addComponent(titel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,6 +132,12 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
             } else {
                 lblHasil.setText("Hasil: Nomor " + nomor + " adalah Ganjil");
             }
+            if (prima(nomor)) {
+                lblHasil.setText(lblHasil.getText() + " dan juga Prima");
+            } else {
+                lblHasil.setText(lblHasil.getText() + " dan Bukan Prima");
+            }
+            
         } catch (NumberFormatException e) {
             // Menampilkan pesan kesalahan jika input bukan angka yang valid
             lblHasil.setText("Hasil: Masukkan nomor yang valid.");
@@ -176,6 +181,21 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
                 new Jframei_cek_nomor_genap_ganjil().setVisible(true);
             }
         });
+    }
+    
+     private boolean prima(int number) {
+        if (number <= 1) {
+            return false; // Bilangan kurang dari atau sama dengan 1 bukan prima
+        }
+        if (number == 2) {
+            return true; // 2 adalah bilangan prima
+        }
+        for (int i = 2; i <= Math.sqrt(number); i++) { // Mengecek pembagi hingga akar kuadrat
+            if (number % i == 0) {
+                return false; // Jika ada pembagi selain 1 dan angka itu sendiri, maka bukan prima
+            }
+        }
+        return true; // Jika tidak ada pembagi, maka angka adalah prima
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
