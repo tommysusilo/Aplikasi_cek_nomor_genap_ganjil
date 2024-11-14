@@ -41,6 +41,12 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
         jLabelnomor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabelnomor.setText("NOMOR");
 
+        txtNomor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNomorFocusGained(evt);
+            }
+        });
+
         btnCek.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnCek.setText("CEK NOMOR");
         btnCek.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +138,10 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
             lblHasil.setText("Hasil: Masukkan nomor yang valid.");
         }
     }//GEN-LAST:event_btnCekActionPerformed
+
+    private void txtNomorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomorFocusGained
+        txtNomor.setText("");
+    }//GEN-LAST:event_txtNomorFocusGained
 
     /**
      * @param args the command line arguments
