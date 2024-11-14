@@ -5,6 +5,9 @@
  */
 package aplikasi_cek_nomor_genap_ganjil;
 
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Win 10
@@ -44,6 +47,11 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
         txtNomor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNomorFocusGained(evt);
+            }
+        });
+        txtNomor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomorKeyTyped(evt);
             }
         });
 
@@ -125,17 +133,24 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
          try {
             // Ambil input dari text field dan ubah menjadi integer
             int nomor = Integer.parseInt(txtNomor.getText());
-            
+            String hasil = "Nomor " + nomor;
+
             // Validasi apakah genap atau ganjil
             if (nomor % 2 == 0) {
-                lblHasil.setText("Hasil: Nomor " + nomor + " adalah Genap");
+               // lblHasil.setText("Hasil: Nomor " + nomor + " adalah Genap");
+                 hasil += " adalah Genap";
             } else {
-                lblHasil.setText("Hasil: Nomor " + nomor + " adalah Ganjil");
+               // lblHasil.setText("Hasil: Nomor " + nomor + " adalah Ganjil");
+                 hasil += " adalah Ganjil";
             }
             if (prima(nomor)) {
-                lblHasil.setText(lblHasil.getText() + " dan juga Prima");
+               // lblHasil.setText(lblHasil.getText() + " dan juga Prima");
+                hasil += " dan juga Prima";
+                JOptionPane.showMessageDialog(this, hasil, "Hasil Pengecekan", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                lblHasil.setText(lblHasil.getText() + " dan Bukan Prima");
+              //  lblHasil.setText(lblHasil.getText() + " dan Bukan Prima");
+                hasil += " dan bukan Prima";
+                JOptionPane.showMessageDialog(this, hasil, "Hasil Pengecekan", JOptionPane.INFORMATION_MESSAGE);
             }
             
         } catch (NumberFormatException e) {
@@ -147,6 +162,17 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
     private void txtNomorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNomorFocusGained
         txtNomor.setText("");
     }//GEN-LAST:event_txtNomorFocusGained
+
+    private void txtNomorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomorKeyTyped
+       char c = evt.getKeyChar();
+            if (!(Character.isDigit(c) || c == KeyEvent.VK_BACK_SPACE || c == KeyEvent.VK_DELETE)) {
+                evt.consume(); // Mencegah karakter yang bukan angka
+                 JOptionPane.showMessageDialog(null,
+                         "Masukkan Hanya Nomor!",
+                        "Error",
+                         JOptionPane.ERROR_MESSAGE);
+            }
+    }//GEN-LAST:event_txtNomorKeyTyped
 
     /**
      * @param args the command line arguments
