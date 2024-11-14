@@ -32,7 +32,7 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
         txtNomor = new javax.swing.JTextField();
         btnCek = new javax.swing.JButton();
         lblHasil = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        titel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,19 +58,19 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(btnCek)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabelnomor, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomor))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(btnCek)
-                        .addGap(0, 145, Short.MAX_VALUE)))
+                        .addComponent(txtNomor)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(179, 179, 179)
-                .addComponent(lblHasil, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(72, 72, 72)
+                .addComponent(lblHasil, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,8 +86,8 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Aplikasi Cek Nomor Genap Ganjil");
+        titel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        titel.setText("Aplikasi Cek Nomor Genap Ganjil");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,18 +96,18 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(titel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(titel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -117,7 +117,20 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekActionPerformed
-        // TODO add your handling code here:
+         try {
+            // Ambil input dari text field dan ubah menjadi integer
+            int nomor = Integer.parseInt(txtNomor.getText());
+            
+            // Validasi apakah genap atau ganjil
+            if (nomor % 2 == 0) {
+                lblHasil.setText("Hasil: Nomor " + nomor + " adalah Genap");
+            } else {
+                lblHasil.setText("Hasil: Nomor " + nomor + " adalah Ganjil");
+            }
+        } catch (NumberFormatException e) {
+            // Menampilkan pesan kesalahan jika input bukan angka yang valid
+            lblHasil.setText("Hasil: Masukkan nomor yang valid.");
+        }
     }//GEN-LAST:event_btnCekActionPerformed
 
     /**
@@ -157,10 +170,10 @@ public class Jframei_cek_nomor_genap_ganjil extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCek;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelnomor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblHasil;
+    private javax.swing.JLabel titel;
     private javax.swing.JTextField txtNomor;
     // End of variables declaration//GEN-END:variables
 }
